@@ -23,6 +23,3 @@ src/lecture01/2-ripasso/cmake-build-debug/.cmake/api/v1/query/codemodel-v2
 src/lecture01/2-ripasso/cmake-build-debug/.cmake/api/v1/query/toolchains-v1
 *.json
 /src/lecture01/2-ripasso/cmake-build-debug
-
-.idea
-out
