@@ -17,19 +17,22 @@ package lecture02;
 //@ ##### Concetti chiave
 //@ Quali sono i concetti fondanti del paradigma OO
 //@ - oggetti : hanno uno stato / hanno un comportamento (messaggi / metodi), hanno un id, hanno una locazione in memoria,
-//@ - incapsulamento : interfacce / information hiding / implementazioni non visibili
+//@ - incapsulamento : interfacce / information hiding / implementazioni non visibili (permessi nascosti per minare un blocco, nascosti così utente non può fare quello che vuole)
 //@ - classificazione (ereditarieta`): gli oggetti appartengono a piu classi
-//@ - specializzazione (ereditarieta`) : permette l'aggiunta di stato & comportamento
-//@ - polimorfismo : permette ad uno stesso oggetto di essere usato in contesti (di tipo) diversi
+//@ - specializzazione (ereditarieta`) : permette l'aggiunta di stato & comportamento (alle classi più interno dell'albero di ereditarietà, un blocco può avere dei aspetti in comuni con degli altri blocchi ma anche caratteristiche uniche)
+//@ - polimorfismo : permette ad uno stesso oggetto di essere usato in contesti (di tipo) diversi (ci permette di creare strutture dati che accettano tutti i blocchi o tutti i blocchi con delle caratteristiche specifiche, ad esempio la cassa accetta tutti i blocchi ma il banco da lavoro solo alcuni)
 
 //@ ##### Terminologia
 //@ In oop, usiamo termini ben definiti
-//@ - classe : tipo definito dall'utente. Schema per creare oggetti che condividono comportamento e stessa forma di stato -- memory footprint
-//@ - oggetto : istanza di una classe. Ha una nozione di stato che varia da oggetto a oggetto
-//@ - metodo : comportamento definito da una classe, invocabile su un oggetto (con parametri)
-//@ - funzione : funzionalita` che non si chiama su un oggetto
-//@ - campo/variabile d'istanza : parte dello stato di un oggetto
-//@ - firma : tipo di input e di output di un metodo (o di una funzione)
+//@ - CLASSE : DEF = tipo definito dall'utente. Schema per creare oggetti che condividono comportamento e stessa forma di stato -- memory footprint
+//@            È formata da una lista di: - campi (definiscono lo stato degli oggetti creati)
+//@                                       - metodi (definiscono il comportamento degli oggetti di quella classe)
+//@                                       - costruttori (definiscono come possiamo fare a inizializzare oggetti di una certa classe)
+//@ - OGGETTO/istanza : istanza di una classe. Ha una nozione di stato che varia da oggetto a oggetto
+//@ - METODO : comportamento definito da una classe, invocabile su un oggetto (con parametri)
+//@ - FUNZIONE : funzionalita` che non si chiama su un oggetto
+//@ - CAMPO/variabile d'istanza : parte dello stato di un oggetto
+//@ - FIRMA : tipo di input e di output di un metodo (o di una funzione). NOTA: il tipo è sia input che output proprio con in PolyML (ES: val somma = fn: int * int -> int)
 
 //@ ####### Esempi
 //@ Un tipico esempio di classe e` lo stampino dei biscotti: tutti i biscotti hanno la stessa forma
@@ -109,10 +112,13 @@ public class Lecture2 {
     //@ Il tipo `TNT` all'inizio della riga definisce il tipo della variabile.
     //@ Possono esistere piu` istanze della stessa classe, cioe` piu` oggetti di quel tipo, per esempio il secondo oggetto viene salvato nella variabile `tnt2`
     private static void classExample() {
-        TNT tnt1 = new TNT();
+        TNT tnt1 = new TNT();  //@ Creo un nuovo oggetto chiamato "tnt1" di tipo TNT (che è una classe), alloco oggetto ma non serve deallocarlo (lo fa in automatico)
         System.out.println("My first block: " + tnt1);
 
-        TNT tnt2 = new TNT();
+        TNT tnt2 = new TNT(); //@ NOTA: le () indicano che uso un costruttore
+        //@ Possono esistere più oggetti della stessa classe!!!
+        //@ Gli oggetti "tnt1" e "tnt2" sono allocati nello stack in particolare sotto la "funzione" classExample
+        //@ Ma in realtà "tnt1" e "tnt2" sono PUNTATORI agli oggetti allegati in memoria, però ci è nascosto il fatto che "tnt1" e "tnt2" sono PUNTATORI infatti gli utilizzo come se fossero oggetti
     }
 
     //@ ##### I Campi (nelle classi) e lo stato (degli oggetti)
@@ -241,7 +247,7 @@ public class Lecture2 {
         movePlayer(99);
 
         System.out.println("\n=== 2. THE GOOD WAY (ENUMS) ===");
-        movePlayerEnum(Direction.NORTH);
+        movePlayerEnum(Direction.NORTH); //@ NOTA se scrivessi "Direction.0" come parametro sarebbe un errore di compilazione, Direction è una enum, usa parole chiave e inoltre ci sarebbe anche un errore concettuale, l'implementazione della enum "Direction" DEVE RIMANERE NASCOSTA, altri programmatori non lo devono sapere  
         //QUIZ: posso decommentare questa riga?
         //@ ---
 //         movePlayerEnum(99);
@@ -264,7 +270,7 @@ public class Lecture2 {
     //QUIZ: Differenza tra statement ed expressions?
     //@ ---
     //@ Le switch expressions devono essere esaustive, volendo con un default case
-    private static void movePlayerEnum(Direction dir) {
+    private static void movePlayerEnum(Direction dir) {  //@ NOTA: Questo metodo ("funzione") ha il tipo Direction TO void (RICORDA: per il tipo devi considerare sia input che output)
         String dirName = switch (dir) {
             case NORTH -> "NORTH";
             case EAST -> "EAST";
@@ -275,7 +281,7 @@ public class Lecture2 {
 
     //@ ##### La enum `ToolTier`
     //@ Le enums sono classi vere e proprie, possono avere campi, metodi e costruttori
-    //@ Ogni variante (es, WOOD o DIAMOND) definisce un oggetto di cui esiste una sola istanza
+    //@ Ogni variante (es, WOOD o DIAMOND) definisce un oggetto di cui esiste UNA SOLA ISTANZA (cioè ad esempio se creo più oggetti "gold" punteranno alla stessa "enum-class" e quindi avranno le stesse caratteristiche, a differenza di un classico oggetto creato con una semplice classe) 
     //@ Il costruttore delle enums e` privato, esternamente si crea una variante, e questo chiama il costruttore come definito dentro all'enum
     //@ Questo e` per evitare che si possano aggiungere varianti all'enum
 

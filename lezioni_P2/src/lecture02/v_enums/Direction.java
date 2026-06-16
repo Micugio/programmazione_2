@@ -2,7 +2,7 @@ package lecture02.v_enums;
 
 //@ La Enum Direction e le sue varianti
 public enum Direction {
-    NORTH,
+    NORTH, //@ NOTA: per il compilatore se non scrivo niente NORTH=0, EAST=1, ...
     EAST,
     SOUTH,
     WEST,

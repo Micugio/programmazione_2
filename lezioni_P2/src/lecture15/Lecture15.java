@@ -68,6 +68,7 @@ public class Lecture15 {
     //@ Pensate agli alberi di Minecraft: hanno un tronco di una certa lunghezza, e una chioma semi-sferica ... se sono Oak o Birch. Ma se sono Dark Oak o Spruce, sono alti e hanno il tronco spesso, se sono Mangrovie, sono molto ramificate, nella savana sono sbilenchi, nella giungla hanno i rampicanti
     //@ Mettere tutta questa logica in un costruttore lo rende molto complesso
     //@ Per semplificare il codice, si preferisce creare un Factory Method, cioe` una classe che contiene i metodi per creare gli oggetti complessi -- in questo caso gli Alberi
+    //@ NOTA: Creo un factory method in modo da non permettere ad un altro sviluppatore (che non sono io) di poter usare il costruttore di Tree per creare un albero come vuole. Lo sviluppatore se vuole creare un albero dovrà utilizzare i metodi statici contenuti in TreeFactory e SOLO quelli!!!
 
     //@ La classe il cui costruttore diverrebbe troppo complesso ottiene un costruttore PackagePrivate, ma il suo tipo rimane pubblico e conosciuto a tutti
     //@ Nello stesso package della classe si crea la classe factory
