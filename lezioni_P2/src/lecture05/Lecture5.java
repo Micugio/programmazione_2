@@ -124,10 +124,10 @@ public class Lecture5 {
     private static void subtypingExample() {
         Entity gr = new Zombie();
         //QUIZ: Posso decommentare questa riga?
-        // gr.groan();
+        //gr.groan();
         //@ ---
         //QUIZ: Posso decommentare questa riga?
-        // gr.teleport(9, 9);
+        //gr.teleport(9, 9);
         //@ ---
 
         //@ Il polimorfismo di sottotipo, e la relazione 'is-a' inducono l' 'upcasting': una variabile di un certo sottotipo viene 'upcast'ata, cioe` messa in e considerata come di un suo supertipo
