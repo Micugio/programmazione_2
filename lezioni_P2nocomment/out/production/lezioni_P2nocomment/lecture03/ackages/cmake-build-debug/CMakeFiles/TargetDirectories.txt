@@ -1,0 +1,3 @@
+/Users/squera/University/repos/-unitn-Programmazione2/src/lecture03/ackages/cmake-build-debug/CMakeFiles/ackages.dir
+/Users/squera/University/repos/-unitn-Programmazione2/src/lecture03/ackages/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/squera/University/repos/-unitn-Programmazione2/src/lecture03/ackages/cmake-build-debug/CMakeFiles/rebuild_cache.dir
